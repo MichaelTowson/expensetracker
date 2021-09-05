@@ -11,6 +11,10 @@ const Expenses = (props) => {
     const filterChangeHandler = (selectedYear) => {
       setFilteredYear(selectedYear);
     };
+
+    const filteredExpenses = props.items.filter(item => {
+      return item.date.getFullYear().toString() === filteredYear;
+    });
   
   return (
     <div>
@@ -20,11 +24,12 @@ const Expenses = (props) => {
           onChangeFilter={filterChangeHandler} 
         />
 
-        {props.items.map((expense) => (
+        {filteredExpenses.map((item) => (
           <ExpenseItem 
-            title={expense.title} 
-            amount={expense.amount} 
-            date={expense.date}
+            key={item.id} //Key is a REACT property that helps REACT know what each element is. This is necessary for optimization.
+            title={item.title} 
+            amount={item.amount} 
+            date={item.date}
           />
           ))}
       </Card>
