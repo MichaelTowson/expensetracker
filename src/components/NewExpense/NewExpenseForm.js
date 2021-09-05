@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './NewExpenseForm.css'
 
-const NewExpenseForm = () => {
+const NewExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState(''); //Note: .value always returns a string, which is why state is stored as a string.
   const [enteredAmount, setEnteredAmount] = useState('');
   const [enteredDate, setEnteredDate] = useState('');
@@ -25,7 +25,9 @@ const NewExpenseForm = () => {
       date: new Date(enteredDate), //new Date is necessary because state only stores strings.
     };
 
-    console.log(expenseData)
+    props.onSaveExpenseData(expenseData) //This is a pointer to a function that we are importing from the parent as a prop. The argument, "expenseData," is defined here in submitHandler. 
+
+    //Reset state
     setEnteredTitle('');
     setEnteredAmount('');
     setEnteredDate('');
