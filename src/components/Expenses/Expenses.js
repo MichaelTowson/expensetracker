@@ -8,8 +8,8 @@ import "./Expenses.css";
 const Expenses = (props) => {
     const [filteredYear, setFilteredYear] = useState("2020");
 
-    const filterChangeHandler = (selectedYear) => {
-      setFilteredYear(selectedYear);
+    const filterChangeHandler = (selection) => {
+      setFilteredYear(selection);
     };
 
     const filteredExpenses = props.items.filter(item => {
@@ -19,18 +19,21 @@ const Expenses = (props) => {
   return (
     <div>
       <Card className="expenses">
-        <ExpenseFilter 
-          selected={filteredYear} 
-          onChangeFilter={filterChangeHandler} 
+        <ExpenseFilter
+          selected={filteredYear}
+          onChangeFilter={filterChangeHandler}
         />
-
-        {filteredExpenses.map((item) => (
-          <ExpenseItem 
-            key={item.id} //Key is a REACT property that helps REACT know what each element is. This is necessary for optimization.
-            title={item.title} 
-            amount={item.amount} 
-            date={item.date}
-          />
+        {filteredExpenses.length === 0 && (
+          <p>No expenses found for this year.</p>
+        )}
+        {filteredExpenses.length > 0 &&
+          filteredExpenses.map((item) => (
+            <ExpenseItem
+              key={item.id} //Key is a REACT property that helps REACT know what each element is. This is necessary for optimization.
+              title={item.title}
+              amount={item.amount}
+              date={item.date}
+            />
           ))}
       </Card>
     </div>
