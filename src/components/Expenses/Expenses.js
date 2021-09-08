@@ -26,15 +26,7 @@ const Expenses = (props) => {
         {filteredExpenses.length === 0 && (
           <p>No expenses found for this year.</p>
         )}
-        {filteredExpenses.length > 0 &&
-          filteredExpenses.map((item) => (
-            <ExpenseItem
-              key={item.id} //Key is a REACT property that helps REACT know what each element is. This is necessary for optimization.
-              title={item.title}
-              amount={item.amount}
-              date={item.date}
-            />
-          ))}
+          ))
       </Card>
     </div>
   );
