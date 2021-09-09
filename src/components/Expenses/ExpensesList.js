@@ -1,21 +1,23 @@
 import React from 'react';
-
 import ExpenseItem from './ExpenseItem'
+import './ExpensesList.css'
 
-const ExpensesList = props => {};
+const ExpensesList = props => {
 
-return (
-  <div>
-{filteredExpenses.length > 0 &&
-          filteredExpenses.map((item) => (
-            <ExpenseItem
-              key={item.id} //Key is a REACT property that helps REACT know what each element is. This is necessary for optimization.
-              title={item.title}
-              amount={item.amount}
-              date={item.date}
-            />
-          ))
-  </div>
-  )}
+  if (props.items.length === 0) {
+    return <h2 className="expenses-list__fallback">No Expenses Found</h2>;
+  };
+
+  if (props.items.length > 0) {
+
+    return (
+      <ul className="expenses-list">
+        {props.items.map( (expense) => (
+          <ExpenseItem key={expense.id} title={expense.title} amount={expense.amount} date={expense.date} />
+      ))};
+      </ul>
+    );
+  };
+};
 
 export default ExpensesList;
