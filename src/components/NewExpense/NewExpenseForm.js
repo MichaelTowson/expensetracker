@@ -21,7 +21,7 @@ const NewExpenseForm = (props) => {
 
     const expenseData = { //Remember, this is a normal variable, not a function.
       title: enteredTitle,
-      amount: enteredAmount,
+      amount: +enteredAmount,
       date: new Date(enteredDate), //new Date is necessary because state only stores strings.
     };
 
